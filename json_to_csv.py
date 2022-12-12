@@ -28,21 +28,21 @@ def json_to_csv():
 
                     else:
 
-                        # if data['subreddit'] in subreddits:
-                        #     subdata = (subreddits[data['subreddit']][0]+1, subreddits[data['subreddit']][1] + int(data['score']))
-                        #     subreddits[data['subreddit']] = subdata
-                        #     #print("Subreddit", subreddits[data['subreddit']][1])
-                        # if data['author'] in users:
-                        #     #print("Author", users[data['author']][1])
-                        #     userdata = (users[data['author']][0]+1, users[data['author']][1] + int(data['score']))
-                        #     users[data['author']] = userdata
-                        # if data['subreddit'] not in subreddits:
-                        #     subreddits[data['subreddit']] = (1, int(data['score']))
-                        # if data['author'] not in users:
-                        #     users[data['author']] = (1, int(data['score']))
-                        # #
-                        # totalposts += 1
-                        # totalkarma += data['score']
+                        if data['subreddit'] in subreddits:
+                            subdata = (subreddits[data['subreddit']][0]+1, subreddits[data['subreddit']][1] + int(data['score']))
+                            subreddits[data['subreddit']] = subdata
+                            #print("Subreddit", subreddits[data['subreddit']][1])
+                        if data['author'] in users:
+                            #print("Author", users[data['author']][1])
+                            userdata = (users[data['author']][0]+1, users[data['author']][1] + int(data['score']))
+                            users[data['author']] = userdata
+                        if data['subreddit'] not in subreddits:
+                            subreddits[data['subreddit']] = (1, int(data['score']))
+                        if data['author'] not in users:
+                            users[data['author']] = (1, int(data['score']))
+                        #
+                        totalposts += 1
+                        totalkarma += data['score']
 
                         # i += 1
                         # if i == 10000:
@@ -57,79 +57,79 @@ def json_to_csv():
                             k += 1000000
 
     print("Finished!")
-    # print(f"Processed {n} lines. Here are the summary statistics:")
-    #
-    # topsubs = [(k, v) for k, v in sorted(subreddits.items(), key=lambda item: item[1], reverse = True)]
-    # topusers = [(k, v) for k, v in sorted(users.items(), key=lambda item: item[1], reverse = True)]
-    # topkarma = [(k, v) for k, v in sorted(users.items(), key=lambda item: item[1][1], reverse = True)]
-    #
-    # groups = {"Superusers": (0, 0), "Contributors": (0, 0), "Lurkers": (0, 0)}
-    #
-    # subposts = 0
-    # subkarma = 0
-    #
-    # for i in range(16):
-    #     subposts += topsubs[i][1][0]
-    #     subkarma += topsubs[i][1][1]
-    #
-    # print("")
-    # print("Subreddits in total:", len(topsubs))
-    # print(f'Top 16 subreddits account for {format(subposts/totalposts*100, ".2f")}% of all posts and {format(subkarma/totalkarma*100, ".2f")}% of total karma')
-    #
-    # for i in range(len(topusers)):
-    #     if i < round(len(topusers)*0.01):
-    #         groups["Superusers"] = (groups["Superusers"][0] + topusers[i][1][0], groups["Superusers"][1] + topusers[i][1][1])
-    #
-    #     elif i < round(len(topusers)*0.1):
-    #         groups["Contributors"] = (groups["Contributors"][0] + topusers[i][1][0], groups["Contributors"][1] + topusers[i][1][1])
-    #         #groups["Contributors"] += topusers[i][1][0]
-    #
-    #     else:
-    #         #groups["Lurkers"] += topusers[i][1][0]
-    #         groups["Lurkers"] = (groups["Lurkers"][0] + topusers[i][1][0], groups["Lurkers"][1] + topusers[i][1][1])
-    # #####################
-    #
-    # print("Users in total:", len(topusers))
-    # print("")
-    # for index in groups:
-    #     print(f'{index} have in total made {groups[index][0]} posts ({format(groups[index][0]/totalposts*100, ".2f")}% of all posts) and accumulated {groups[index][1]} karma ({format(groups[index][1]/totalkarma*100, ".2f")}% of total karma)')
-    # print("")
-    # ######################
-    #
-    # sampletopsubs = []
-    #
-    # print('================Top subreddits=========================')
-    # for i in range(16):
-    #     sampletopsubs.append(topsubs[i][0])
-    #     if i < 9:
-    #         print(f'{"0" + str(i+1):02} {topsubs[i][0]: ^40} {str(topsubs[i][1][0]): ^5} {str(topsubs[i][1][1]): ^5}')
-    #     else:
-    #         print(f'{str(i+1)} {topsubs[i][0]: ^40} {str(topsubs[i][1][0]): ^5} {str(topsubs[i][1][1]): ^5}')
-    #
-    # print("")
-    #
-    # print('===================Top users==========================')
-    # for i in range(16):
-    #     if i < 9:
-    #         print(f'{"0" + str(i+1):02} {topusers[i][0]: ^40} {str(topusers[i][1][0]): ^5} {str(topusers[i][1][1]): ^5}')
-    #     else:
-    #         print(f'{str(i+1)} {topusers[i][0]: ^40} {str(topusers[i][1][0]): ^5} {str(topusers[i][1][1]): ^5}')
-    #
-    # ###################
-    # print("")
-    # # print("Systematic sample of 100 subreddits:")
-    # n = 0
-    #
-    # samplesubs = []
-    #
-    # while n <= len(topsubs):
-    #     if topsubs[n][1][0] >= 1000:
-    #         samplesubs.append(topsubs[n][0])
-    #     n += round(len(topsubs)*0.001)
-    #
-    # print(samplesubs)
-    # print("")
-    # print(sampletopsubs)
+    print(f"Processed {n} lines. Here are the summary statistics:")
+    
+    topsubs = [(k, v) for k, v in sorted(subreddits.items(), key=lambda item: item[1], reverse = True)]
+    topusers = [(k, v) for k, v in sorted(users.items(), key=lambda item: item[1], reverse = True)]
+    topkarma = [(k, v) for k, v in sorted(users.items(), key=lambda item: item[1][1], reverse = True)]
+    
+    groups = {"Superusers": (0, 0), "Contributors": (0, 0), "Lurkers": (0, 0)}
+    
+    subposts = 0
+    subkarma = 0
+    
+    for i in range(16):
+        subposts += topsubs[i][1][0]
+        subkarma += topsubs[i][1][1]
+    
+    print("")
+    print("Subreddits in total:", len(topsubs))
+    print(f'Top 16 subreddits account for {format(subposts/totalposts*100, ".2f")}% of all posts and {format(subkarma/totalkarma*100, ".2f")}% of total karma')
+    
+    for i in range(len(topusers)):
+        if i < round(len(topusers)*0.01):
+            groups["Superusers"] = (groups["Superusers"][0] + topusers[i][1][0], groups["Superusers"][1] + topusers[i][1][1])
+    
+        elif i < round(len(topusers)*0.1):
+            groups["Contributors"] = (groups["Contributors"][0] + topusers[i][1][0], groups["Contributors"][1] + topusers[i][1][1])
+            #groups["Contributors"] += topusers[i][1][0]
+    
+        else:
+            #groups["Lurkers"] += topusers[i][1][0]
+            groups["Lurkers"] = (groups["Lurkers"][0] + topusers[i][1][0], groups["Lurkers"][1] + topusers[i][1][1])
+    #####################
+    
+    print("Users in total:", len(topusers))
+    print("")
+    for index in groups:
+        print(f'{index} have in total made {groups[index][0]} posts ({format(groups[index][0]/totalposts*100, ".2f")}% of all posts) and accumulated {groups[index][1]} karma ({format(groups[index][1]/totalkarma*100, ".2f")}% of total karma)')
+    print("")
+    ######################
+    
+    sampletopsubs = []
+    
+    print('================Top subreddits=========================')
+    for i in range(16):
+        sampletopsubs.append(topsubs[i][0])
+        if i < 9:
+            print(f'{"0" + str(i+1):02} {topsubs[i][0]: ^40} {str(topsubs[i][1][0]): ^5} {str(topsubs[i][1][1]): ^5}')
+        else:
+            print(f'{str(i+1)} {topsubs[i][0]: ^40} {str(topsubs[i][1][0]): ^5} {str(topsubs[i][1][1]): ^5}')
+    
+    print("")
+    
+    print('===================Top users==========================')
+    for i in range(16):
+        if i < 9:
+            print(f'{"0" + str(i+1):02} {topusers[i][0]: ^40} {str(topusers[i][1][0]): ^5} {str(topusers[i][1][1]): ^5}')
+        else:
+            print(f'{str(i+1)} {topusers[i][0]: ^40} {str(topusers[i][1][0]): ^5} {str(topusers[i][1][1]): ^5}')
+    
+    ###################
+    print("")
+    # print("Systematic sample of 100 subreddits:")
+    n = 0
+    
+    samplesubs = []
+    
+    while n <= len(topsubs):
+        if topsubs[n][1][0] >= 1000:
+            samplesubs.append(topsubs[n][0])
+        n += round(len(topsubs)*0.001)
+    
+    print(samplesubs)
+    print("")
+    print(sampletopsubs)
 
 # Lets get all the top 16 subs in one dataframe
 
